@@ -77,28 +77,28 @@ public class Plant {
         return info;
     }
 
-    public static Plant parsePlant(String data) throws PlantException {
+    public static Plant parsePlant(String data, int lineNumber) throws PlantException {
         String[] parsedData = data.split("\t");
-        if (parsedData.length < 5) throw new PlantException("Spatny pocet polozek na radku: " + data);
-        if (parsedData[0].isEmpty()) throw new PlantException("Prazdne jmeno kvetiny.");
+        if (parsedData.length < 5) throw new PlantException("Spatny pocet polozek na radku c:" + lineNumber + " " + data);
+        if (parsedData[0].isEmpty()) throw new PlantException("Prazdne jmeno kvetiny na radku c:" + lineNumber + " " + data);
         LocalDate plantedData;
         try {
         plantedData = LocalDate.parse(parsedData[4]);
         } catch (Exception e) {
-            throw new PlantException("Spatny format data zasazeni.");
+            throw new PlantException("Spatny format data zasazeni na radku c:" + lineNumber + " " + parsedData[4]);
         }
         LocalDate wateredData;
         try {
             wateredData = LocalDate.parse(parsedData[3]);
         } catch (Exception e) {
-            throw new PlantException("Spatny format data posledniho zalevani.");
+            throw new PlantException("Spatny format data posledniho zalevani na radku c:" + lineNumber + " " + parsedData[3]);
         }
         int frequencyOfWateringData;
         try {
             frequencyOfWateringData=Integer.parseInt(parsedData[2]);
         } catch (Exception e)
         {
-            throw new PlantException("Spatny format frekvence zalevani.");
+            throw new PlantException("Spatny format frekvence zalevani na radku c:" + lineNumber + " " + parsedData[2]);
         }
         return new Plant(parsedData[0], parsedData[1], plantedData, wateredData, frequencyOfWateringData);
     }

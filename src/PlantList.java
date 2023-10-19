@@ -27,8 +27,9 @@ public class PlantList {
     public void loadPlantList(String path) throws PlantException {
 
         try (Scanner s = new Scanner(new BufferedReader(new FileReader(path)))) {
+            int lineNumber = 0;
             while (s.hasNextLine()) {
-                plantList.add(Plant.parsePlant(s.nextLine()));
+                plantList.add(Plant.parsePlant(s.nextLine(), lineNumber++));
             }
         } catch (FileNotFoundException e) {
             throw new PlantException("Nepodarilo se najit soubor: " + path);

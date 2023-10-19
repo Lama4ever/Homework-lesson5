@@ -79,6 +79,7 @@ public class Plant {
 
     public static Plant parsePlant(String data) throws PlantException {
         String[] parsedData = data.split("\t");
+        if (parsedData.length < 5) throw new PlantException("Spatny pocet polozek na radku: " + data);
         if (parsedData[0].isEmpty()) throw new PlantException("Prazdne jmeno kvetiny.");
         LocalDate plantedData;
         try {

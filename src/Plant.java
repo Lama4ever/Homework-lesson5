@@ -95,25 +95,25 @@ public class Plant {
 
     public static Plant parsePlant(String data) throws PlantException {
         String[] parsedData = data.split("\t");
-        if (parsedData[0].isEmpty()) throw new PlantException("Prazdne jmeno kvetiny");
+        if (parsedData[0].isEmpty()) throw new PlantException("Prazdne jmeno kvetiny.");
         LocalDate plantedData;
         try {
-            plantedData = LocalDate.parse(parsedData[4]);
+        plantedData = LocalDate.parse(parsedData[4]);
         } catch (Exception e) {
-            throw new PlantException("Spatny format planted data");
+            throw new PlantException("Spatny format data zasazeni.");
         }
         LocalDate wateredData;
         try {
             wateredData = LocalDate.parse(parsedData[3]);
         } catch (Exception e) {
-            throw new PlantException("Spatny format watered data");
+            throw new PlantException("Spatny format data posledniho zalevani.");
         }
         int frequencyOfWateringData;
         try {
             frequencyOfWateringData=Integer.parseInt(parsedData[2]);
         } catch (Exception e)
         {
-            throw new PlantException("Spatny format frekvence zalevani");
+            throw new PlantException("Spatny format frekvence zalevani.");
         }
         return new Plant(parsedData[0], parsedData[1], plantedData, wateredData, frequencyOfWateringData);
     }

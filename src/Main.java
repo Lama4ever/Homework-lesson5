@@ -14,5 +14,7 @@ public class Main {
 
         list.loadPlantList(Settings.getPATH()+Settings.getFilenameWrongFrequency());
 
+        list.loadPlantList(Settings.getPATH()+Settings.getFilenameWrongDate());
+
     }
 }

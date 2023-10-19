@@ -10,29 +10,21 @@ public class Plant {
     LocalDate watering;
     int frequencyOfWatering;
 
-    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) {
+    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
-        try{
             if(watering.isBefore(planted)) throw new PlantException("Zalevani musi byt az po zasazeni");
             this.watering=watering;
-        } catch (PlantException e) {
-            throw new RuntimeException(e);
-        }
 
-        try {
             if (frequencyOfWatering < 1) throw new PlantException("Frequence zalevani musi byt kladne cele cislo.");
             this.frequencyOfWatering = frequencyOfWatering;
-        } catch (PlantException e) {
-            throw new RuntimeException(e);
-        }
     }
-    public Plant(String name, LocalDate planted, int frequencyOfWatering) {
+    public Plant(String name, LocalDate planted, int frequencyOfWatering) throws PlantException {
         this(name, "", planted, LocalDate.now(), frequencyOfWatering);
     }
 
-    public Plant(String name) {
+    public Plant(String name) throws PlantException {
         this(name, "", LocalDate.now(), LocalDate.now(), 7);
     }
 
@@ -64,26 +56,18 @@ public class Plant {
         return watering;
     }
 
-    public void setWatering(LocalDate watering) {
-        try{
+    public void setWatering(LocalDate watering) throws PlantException {
             if(watering.isBefore(planted)) throw new PlantException("Zalevani musi byt az po zasazeni");
             this.watering=watering;
-        } catch (PlantException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public int getFrequencyOfWatering() {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
-        try {
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
             if (frequencyOfWatering < 1) throw new PlantException("Frequence zalevani musi byt kladne cele cislo.");
             this.frequencyOfWatering = frequencyOfWatering;
-        } catch (PlantException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public String getWatertingInfo()

@@ -1,7 +1,7 @@
 public class Settings {
     private static final String PATH = "./resources/";
     private static final String FILENAME_CORRECT = "kvetiny.txt";
-    private static final String FILENAME_OUT = "kvetiny.txt";
+    private static final String FILENAME_OUT = "kvetiny_out.txt";
 
     private static final String FILENAME_WRONG_DATE = "kvetiny-spatne-datum.txt";
 
